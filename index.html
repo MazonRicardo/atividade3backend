@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Estatísticas de Basquete</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: white; display: flex; flex-direction: column; align-items: center; padding-top: 50px; }
+        .container { background-color: #1e1e1e; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 320px; text-align: center; }
+        select { width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: none; background: #333; color: white; font-size: 16px; cursor: pointer; }
+        .stats-box { border-top: 2px solid #444; padding-top: 15px; display: none; }
+        .stat-line { display: flex; justify-content: space-between; margin: 8px 0; font-size: 18px; }
+        .value { color: #f39c12; font-weight: bold; }
+        h2 { margin-bottom: 20px; color: #f39c12; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Rachão de Sábado</h2>
+        
+        <select id="playerSelector" onchange="mostrarStats()">
+            <option value="">Selecione o Jogador</option>
+            <option value="bigode">Bigode</option>
+            <option value="zoio">Zoio</option>
+            <option value="ze">Zé</option>
+        </select>
+
+        <div id="statsBox" class="stats-box">
+            <div class="stat-line">Pontos: <span id="pts" class="value">0</span></div>
+            <div class="stat-line">Assists: <span id="ast" class="value">0</span></div>
+            <div class="stat-line">Rebotes: <span id="reb" class="value">0</span></div>
+        </div>
+    </div>
+
+    <script>
+        // Objeto com as estatísticas dos jogadores
+        const jogadores = {
+            bigode: { pts: 28.5, ast: 6.2, reb: 4.1 },
+            zoio: { pts: 15.2, ast: 11.8, reb: 3.5 },
+            ze: { pts: 10.1, ast: 2.5, reb: 14.7 }
+        };
+
+        function mostrarStats() {
+            const selector = document.getElementById('playerSelector');
+            const box = document.getElementById('statsBox');
+            const player = selector.value;
+
+            if (player) {
+                // Preenche os dados
+                document.getElementById('pts').innerText = jogadores[player].pts;
+                document.getElementById('ast').innerText = jogadores[player].ast;
+                document.getElementById('reb').innerText = jogadores[player].reb;
+                
+                // Mostra o painel
+                box.style.display = 'block';
+            } else {
+                box.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
